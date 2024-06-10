@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './compounds/Header/Header';
+import ComponentsStoreContainers from './page/ComponentsStoreContainers/ComponentsStoreContainers';
+import { createUseStyles } from "react-jss"
+import { page } from './utils/page';
+
+const useStyles = createUseStyles({
+  container: {
+    width: `${page.width}px`,
+    marginLeft: "auto",
+    marginRight: "auto",
+  }
+});
 
 function App() {
+  const classes = useStyles()
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <div className={classes.container}>
+        <ComponentsStoreContainers />
+      </div>
     </div>
   );
 }
