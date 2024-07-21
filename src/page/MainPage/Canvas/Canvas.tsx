@@ -14,6 +14,11 @@ type Props = {
 const Canvas: FC<Props> = ({ width, height }) => {
     const ref: any = useRef()
 
+    const storeDataCoords = useSelector((store: any) => store.coords.coords)
+    const storeDataTool = useSelector((store: any) => store.tool.tool)
+    const storeDataZoom = useSelector((store: any) => store.zoom.zoom)
+    const storeDataClick = useSelector((store: any) => store.click.click)
+
     const dispatch = useDispatch()
 
     const handleMouseMove = (event: any) => {
@@ -22,11 +27,6 @@ const Canvas: FC<Props> = ({ width, height }) => {
             y: event.clientY - event.target.offsetTop,
         }));
     };
-
-    const storeDataCoords = useSelector((store: any) => store.coords.coords)
-    const storeDataTool = useSelector((store: any) => store.tool.tool)
-    const storeDataZoom = useSelector((store: any) => store.zoom.zoom)
-    const storeDataClick = useSelector((store: any) => store.click.click)
 
     const clickEvent = (event: any) => {
         if(storeDataTool === "noTool") {

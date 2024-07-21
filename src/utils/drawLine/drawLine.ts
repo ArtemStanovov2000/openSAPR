@@ -1,7 +1,7 @@
-import { data } from "./rerender/rerender"
-import store from "../store"
-import { setTool } from "../store/toolSlise"
-import { dropClick } from "../store/clickSlice"
+import { data } from "../rerender/rerender"
+import store from "../../store"
+import { setTool } from "../../store/toolSlise"
+import { dropClick } from "../../store/clickSlice"
 import { createLine } from "./createLine"
 
 export const drawLine = (context: any) => {
@@ -24,9 +24,5 @@ export const drawLine = (context: any) => {
         })
         store.dispatch(setTool("noTool"))
         store.dispatch(dropClick(""))
-    }
-
-    for (let i = 0; i < data.length; i++) {
-        createLine(context, data[i].xStart, data[i].yStart, data[i].xEnd, data[i].yEnd, data[i].color, data[i].width,)
     }
 }
