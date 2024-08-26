@@ -7,7 +7,7 @@ const zoomSlice = createSlice({
   },
   reducers: {
     setZoom(state, action) {
-      state.zoom = state.zoom * (1 - action.payload / 2000)
+      state.zoom = state.zoom * (1 - 140 / 2000)
     },
   }
 })

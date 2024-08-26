@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { createUseStyles } from "react-jss"
 import { useDispatch } from "react-redux";
-import { setTool } from "../../store/toolSlise";
+import { setTool, Tool } from "../../store/toolSlise";
 
 const useStyles = createUseStyles({
     window: {
@@ -17,16 +17,17 @@ const useStyles = createUseStyles({
 });
 
 type Props = {
-    icon: JSX.Element,
-    label: string,
+    icon: JSX.Element, // Лучше использовать ReactNode
+    tool: Tool;
 }
 
-const ToolItem: FC<Props> = ({icon, label}) => {
+// Переместить в ToolsPanels
+const ToolItem: FC<Props> = ({icon, tool}) => {
     const classes = useStyles()
 
     const dispatch = useDispatch()
     return (
-        <button onClick={() => dispatch(setTool(label))} className={classes.window}>
+        <button onClick={() => dispatch(setTool(tool))} className={classes.window}>
             {icon}
         </button>
     )

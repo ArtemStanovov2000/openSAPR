@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <BrowserRouter>
+      <BrowserRouter> {/* Удалить библиотеку, если не используется */}
         <App />
       </BrowserRouter>
     </React.StrictMode>
