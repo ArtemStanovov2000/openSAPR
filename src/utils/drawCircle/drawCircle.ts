@@ -5,6 +5,7 @@ import { dropClick } from "../../store/clickSlice"
 import { createCircle } from "./createCircle"
 
 export const drawCircle = (context: any) => {
+    // Вместо стора брать из параметров
     const clickCoords = store.getState().click.click
     const mouseCoords = store.getState().coords.coords
     const radius = Math.sqrt(Math.pow(mouseCoords.x - clickCoords[0].x, 2) + Math.pow(mouseCoords.y - clickCoords[0].y, 2))

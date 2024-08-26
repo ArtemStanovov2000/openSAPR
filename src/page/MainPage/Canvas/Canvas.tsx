@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, MouseEvent } from "react"
 import { FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { setClick } from "../../../store/clickSlice"
@@ -11,6 +11,24 @@ type Props = {
     height: number,
 }
 
+// Возможное решение проблемы с зумом
+// const Test123: FC = () => {
+//     const [value1, setValue1] = useState('');
+//     const [prevValue1, setPrevValue1] = useState(''); // prevZoom
+
+//     const onChange = () => {
+//         if (value1 === prevValue1) {
+//             //
+//         } else {
+//             // setValue1()
+//             // 
+//             // 
+//             //
+//             // setPrevValue1()
+//         }
+//     }
+// }
+
 const Canvas: FC<Props> = ({ width, height }) => {
     const ref: any = useRef()
 
@@ -21,20 +39,16 @@ const Canvas: FC<Props> = ({ width, height }) => {
 
     const dispatch = useDispatch()
 
-    const handleMouseMove = (event: any) => {
+    const onMouseMove = (event: any) => {
         dispatch(setCoord({
             x: event.clientX - event.target.offsetLeft,
             y: event.clientY - event.target.offsetTop,
         }));
     };
 
-    const clickEvent = (event: any) => {
-        if(storeDataTool === "noTool") {
-            dispatch(setClick({
-                x: 0,
-                y: 0,
-            }))
-        } else {
+    const onClick = (event: any) => {
+        if (storeDataTool !== "noTool") {
+            // Вернуться к обсуждению типа any
             dispatch(setClick({
                 x: event.clientX - event.target.offsetLeft,
                 y: event.clientY - event.target.offsetTop,
@@ -42,21 +56,25 @@ const Canvas: FC<Props> = ({ width, height }) => {
         }
     }
 
-    const wheel = (e: any) => {
+    const onWheel = (e: any) => {
         dispatch(setZoom(e.deltaY))
     }
 
-    useEffect(() => {
-        const canvas: any = ref.current
-        const context = canvas.getContext("2d")
+    // Перенести в утилиты, где происходит отрисовка
+    const resetCanvas = (context: any) => {
         context.fillStyle = "black";
         context.fillRect(0, 0, width, height);
         context.stroke();
-        rerender(context)
+    }
+
+    useEffect(() => {
+        const context = ref.current.getContext("2d");
+        resetCanvas(context);
+        rerender(context);
     }, [storeDataCoords, storeDataTool, storeDataZoom, storeDataClick])
 
     return (
-        <canvas onClick={clickEvent} onWheel={wheel} onMouseMove={handleMouseMove} ref={ref} width={width} height={height} />
+        <canvas onClick={onClick} onWheel={onWheel} onMouseMove={onMouseMove} ref={ref} width={width} height={height} />
     )
 }
 

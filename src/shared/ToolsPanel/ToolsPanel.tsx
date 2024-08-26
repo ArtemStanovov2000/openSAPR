@@ -5,7 +5,7 @@ import LineIcon from "../../assets/images/LineIcon";
 import CircleIcon from "../../assets/images/CircleIcon";
 
 const useStyles = createUseStyles({
-    window: {
+    window: { // Назвать panel
         display: "grid",
         gap: "5px",
         position: "absolute",
@@ -17,12 +17,16 @@ const useStyles = createUseStyles({
     },
 });
 
+// Переместить в compounds
+
+// article — самостоятельный и независимый
+// в article обычно нужны заголовки
 const ToolsPanel: FC = () => {
     const classes = useStyles()
     return (
         <article className={classes.window}>
-            <ToolItem icon={<LineIcon/>} label="line"/>
-            <ToolItem icon={<CircleIcon/>} label="circle"/>
+            <ToolItem icon={<LineIcon />} tool="line"  />
+            <ToolItem icon={<CircleIcon/>} tool="circle"/>
         </article>
     )
 }
