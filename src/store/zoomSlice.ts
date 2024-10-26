@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const zoomSlice = createSlice({
   name: "zoom",
   initialState: {
-    zoom: 1
+    zoom: {
+      zoom: 1
+    }
   },
   reducers: {
     setZoom(state, action) {
-      state.zoom = state.zoom * (1 - 140 / 2000)
+      state.zoom.zoom = state.zoom.zoom  * (1 - action.payload / 2000)
     },
   }
 })

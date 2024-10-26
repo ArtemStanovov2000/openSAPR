@@ -1,33 +1,19 @@
-import { useEffect, useRef, useState, MouseEvent } from "react"
+import { useEffect, useRef, useState } from "react"
 import { FC } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setClick } from "../../../store/clickSlice"
 import { setCoord } from "../../../store/coordsSlice"
 import { setZoom } from "../../../store/zoomSlice"
-import { rerender } from "../../../utils/rerender/rerender"
+import { rerender } from "../../../RenderEngine"
+import { createStartWindow } from "../../../RenderEngine/createStartWindow"
+import { data } from "../../../data/data"
+import { StoreParams } from "../../../models/StoreParams"
+import { setTool } from "../../../store/toolSlise"
+import { dropClick, addClickHistory } from "../../../store/clickSlice"
 
 type Props = {
     width: number,
     height: number,
 }
-
-// Возможное решение проблемы с зумом
-// const Test123: FC = () => {
-//     const [value1, setValue1] = useState('');
-//     const [prevValue1, setPrevValue1] = useState(''); // prevZoom
-
-//     const onChange = () => {
-//         if (value1 === prevValue1) {
-//             //
-//         } else {
-//             // setValue1()
-//             // 
-//             // 
-//             //
-//             // setPrevValue1()
-//         }
-//     }
-// }
 
 const Canvas: FC<Props> = ({ width, height }) => {
     const ref: any = useRef()
@@ -47,9 +33,8 @@ const Canvas: FC<Props> = ({ width, height }) => {
     };
 
     const onClick = (event: any) => {
-        if (storeDataTool !== "noTool") {
-            // Вернуться к обсуждению типа any
-            dispatch(setClick({
+        if (storeDataTool !== null) {
+            dispatch(addClickHistory({
                 x: event.clientX - event.target.offsetLeft,
                 y: event.clientY - event.target.offsetTop,
             }))
@@ -60,21 +45,46 @@ const Canvas: FC<Props> = ({ width, height }) => {
         dispatch(setZoom(e.deltaY))
     }
 
-    // Перенести в утилиты, где происходит отрисовка
-    const resetCanvas = (context: any) => {
-        context.fillStyle = "black";
-        context.fillRect(0, 0, width, height);
-        context.stroke();
-    }
+    const [keyDown, setKeyDown] = useState(null)
+
+    const handleKeyDown = (event: any) => {
+        setKeyDown(event.key);
+    };
+
+    const handleKeyDown1 = (event: any) => {
+        setKeyDown(null)
+    };
+
 
     useEffect(() => {
         const context = ref.current.getContext("2d");
-        resetCanvas(context);
-        rerender(context);
-    }, [storeDataCoords, storeDataTool, storeDataZoom, storeDataClick])
+        createStartWindow(context, width, height);
+        const windowParam: StoreParams = {
+            coords: storeDataCoords,
+            tool: storeDataTool,
+            click: storeDataClick,
+            zoom: storeDataZoom
+        }
+
+        const store = {
+            dropClick() {
+                dispatch(dropClick(""))
+            },
+            setTool(tool: string | null) {
+                dispatch(setTool(tool))
+            },
+            addClickHistory(x: number, y: number) {
+                dispatch(addClickHistory({ x: x, y: y }))
+            }
+        }
+
+        rerender(context, data, windowParam, store, keyDown);
+    }, [storeDataCoords, storeDataTool, storeDataZoom, storeDataClick, keyDown])
 
     return (
-        <canvas onClick={onClick} onWheel={onWheel} onMouseMove={onMouseMove} ref={ref} width={width} height={height} />
+        <div tabIndex={0} onKeyDown={handleKeyDown} onKeyUp={handleKeyDown1}>
+            <canvas onClick={onClick} onWheel={onWheel} onMouseMove={onMouseMove} ref={ref} width={width} height={height} />
+        </div>
     )
 }
 

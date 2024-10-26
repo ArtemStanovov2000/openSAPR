@@ -1,8 +1,8 @@
 import store from "../../store"
-import { data } from "../rerender/rerender"
 import { setTool } from "../../store/toolSlise"
 import { dropClick } from "../../store/clickSlice"
 import { createCircle } from "./createCircle"
+import { data } from "../../data/data"
 
 export const drawCircle = (context: any) => {
     // Вместо стора брать из параметров
@@ -15,9 +15,11 @@ export const drawCircle = (context: any) => {
         createCircle(context, clickCoords[0].x, clickCoords[0].y, radius)
     }
 
+    const array: any[] = []
+
     if(tool === "circle" && clickCoords[0].x !== 0 && clickCoords[0].y !== 0 && clickCoords[1].x !== 0 && clickCoords[1].y !== 0) {
-        data.push({
-            type: "circle",
+        array.push({
+            type: "Circle",
             xStart: clickCoords[1].x,
             yStart: clickCoords[1].y,
             radius: Math.sqrt(Math.pow(mouseCoords.x - clickCoords[1].x, 2) + Math.pow(mouseCoords.y - clickCoords[1].y, 2)),

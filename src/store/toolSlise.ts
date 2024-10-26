@@ -8,24 +8,7 @@ export type Tool =
   "rectangle" |
   "brush";
 
-const drawTurin = (tool: Tool) => {
-  if (tool === null) {
-    throw new Error('Тюрина нельзя нарисовать ничем.');    
-  }
-
-  if (tool === "brush") {
-    throw new Error("Тюрина нельзя нарисовать кистью.")
-  }
-
-  if (tool === "line") {
-    //
-  }
-
-  if (tool === "circle" || tool === "rectangle") {
-
-  }
-}
-
+  
 type State = {
   tool: Tool;
 }

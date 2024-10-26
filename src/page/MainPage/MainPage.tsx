@@ -1,7 +1,8 @@
 import { FC } from "react"
 import { createUseStyles } from "react-jss"
+import { useState } from "react";
 import Canvas from "./Canvas/Canvas";
-import ToolsPanel from "../../shared/ToolsPanel/ToolsPanel";
+import ToolsPanel from "../../compounds/ToolsPanel/ToolsPanel";
 
 const useStyles = createUseStyles({
     window: {
@@ -14,6 +15,13 @@ const useStyles = createUseStyles({
 
 const MainPage: FC = () => {
     const classes = useStyles()
+
+    const [key, setkey] = useState();
+    const keyDown = (event: any) => {
+        setkey(event.key)
+        console.log(key)
+    }
+
 
     return (
         <div className={classes.window}>

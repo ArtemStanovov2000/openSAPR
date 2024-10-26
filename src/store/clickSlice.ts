@@ -1,23 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type Clicks = {
+  x: number,
+  y: number
+}
+
+const clicks: Clicks[] = []
+
 const clickSlice = createSlice({
   name: "click",
   initialState: {
-    click: [{ x: 0, y: 0 }, { x: 0, y: 0 }, { x: 0, y: 0 }]
+    click: clicks
   },
   reducers: {
-    setClick(state, action) {
-      state.click[2] = state.click[1]
-      state.click[1] = state.click[0]
-      state.click[0] = action.payload
+    addClickHistory(state, action) {
+        state.click.unshift(action.payload)
     },
     dropClick(state, action) {
-      state.click[2] = { x: 0, y: 0 }
-      state.click[1] = { x: 0, y: 0 }
-      state.click[0] = { x: 0, y: 0 }
+      for (let i = state.click.length; i > 0; i--) {
+        state.click.pop()
+      }
     }
   }
 })
 
-export const { setClick, dropClick } = clickSlice.actions
+export const { addClickHistory, dropClick } = clickSlice.actions
 export default clickSlice.reducer

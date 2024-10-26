@@ -1,7 +1,7 @@
-import { FC } from "react"
+import { FC, ReactNode} from "react"
 import { createUseStyles } from "react-jss"
 import { useDispatch } from "react-redux";
-import { setTool, Tool } from "../../store/toolSlise";
+import { setTool, Tool } from "../../../store/toolSlise";
 
 const useStyles = createUseStyles({
     window: {
@@ -17,11 +17,10 @@ const useStyles = createUseStyles({
 });
 
 type Props = {
-    icon: JSX.Element, // Лучше использовать ReactNode
+    icon: ReactNode,
     tool: Tool;
 }
 
-// Переместить в ToolsPanels
 const ToolItem: FC<Props> = ({icon, tool}) => {
     const classes = useStyles()
 

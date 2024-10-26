@@ -1,8 +1,6 @@
-import { createUseStyles } from "react-jss" // Более популярна styled-components
+import { createUseStyles } from "react-jss"
 import Header from './compounds/Header/Header';
 import MainPage from "./page/MainPage/MainPage";
-
-const viewportHeight = window.innerHeight // Удалить, если не нужна
 
 const useStyles = createUseStyles({
   container: {
