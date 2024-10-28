@@ -21,8 +21,8 @@ const ToolsPanel: FC = () => {
     const classes = useStyles()
     return (
         <article className={classes.panel}>
-            <ToolItem icon={<LineIcon />} tool="line"  />
-            <ToolItem icon={<CircleIcon/>} tool="circle"/>
+            <ToolItem icon={<LineIcon />} tool="Line"  />
+            <ToolItem icon={<CircleIcon/>} tool="Line"/>
         </article>
     )
 }

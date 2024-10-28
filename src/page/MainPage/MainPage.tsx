@@ -15,14 +15,6 @@ const useStyles = createUseStyles({
 
 const MainPage: FC = () => {
     const classes = useStyles()
-
-    const [key, setkey] = useState();
-    const keyDown = (event: any) => {
-        setkey(event.key)
-        console.log(key)
-    }
-
-
     return (
         <div className={classes.window}>
             <ToolsPanel />

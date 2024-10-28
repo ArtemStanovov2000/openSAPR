@@ -1,6 +1,5 @@
 export type Line = {
-    type: 'Line',
-    coords?: {
+    coords: {
         xStart: number,
         yStart: number,
         xEnd: number,
@@ -8,10 +7,10 @@ export type Line = {
     },
     color: string,
     width: number
-    zoomCoords?: {
-        xStart: number,
-        yStart: number,
-        xEnd: number,
-        yEnd: number,
+    zoomCoords: {
+        xStart: number | null,
+        yStart: number | null,
+        xEnd: number | null,
+        yEnd: number | null,
     },
 }

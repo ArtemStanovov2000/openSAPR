@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type Clicks = {
+export type Clicks = {
   x: number,
   y: number
 }

@@ -1,19 +1,12 @@
-import { CanvasElement } from "../../models/ElementsType/CanvasElement";
 import { drawLine } from "./elementType/drawLine";
-import { drawCircle } from "./elementType/drawCircle";
-import { drawBlock } from "./elementType/drawBlock";
 import { StoreParams } from "../../models/StoreParams";
+import { Data } from "../../data/data";
+import { Line } from "../../models/ElementsType/Line";
 
-export const renderElement = (context: any, element: CanvasElement, storeParams: StoreParams, isFirstLoop = true) => {
-    switch (element.type) {
-        case "Line":
-            drawLine(context, element, storeParams);
-            break;
-        case "Circle":
-            drawCircle(context, element);
-            break;
-        case "ElementsBlock":
-            drawBlock(context, element, isFirstLoop);
-            break;
-    }
+export const renderElement = (context: any, data: Data, storeParams: StoreParams, storeDispatch: any) => {
+    data.elements.Lines.forEach((line: Line) => {
+        drawLine(context, line)
+    })
+    console.log(storeParams.coords.windowMouseCoords)
+    console.log(storeParams.coords.zoomMouseCoords)
 }
