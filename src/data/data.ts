@@ -1,13 +1,21 @@
-import { Line } from "../models/ElementsType/Line"
+import { Line, AuxiliaryLine } from "../models/ElementsType/Line"
+import { createAxes } from "./createAxes"
+import { createCursor } from "./createCursor"
 
-type Elements = {
+export type Elements = {
     Lines: Line[]
+}
+
+export type AuxiliaryElements = {
+    Lines: AuxiliaryLine[]
 }
 
 export type Data = {
     elements: Elements,
     temporaryStorageElements: Elements,
-    auxiliaryElements: Elements,
+    auxiliaryElements: AuxiliaryElements,
+    centerAxes: Line[],
+    cursor: Line[]
 }
 
 export const data: Data = {
@@ -20,40 +28,9 @@ export const data: Data = {
     auxiliaryElements: {
         Lines: []
     },
-    
+    centerAxes: [],
+    cursor: []
 }
 
-
-data.elements.Lines.push({
-    coords: {
-        xStart: 319,
-        yStart: 341,
-        xEnd: 865,
-        yEnd: 63,
-    },
-    color: "white",
-    width: 2,
-    zoomCoords: {
-        xStart: 319,
-        yStart: 341,
-        xEnd: 865,
-        yEnd: 63,
-    },
-})
-
-data.elements.Lines.push({
-    coords: {
-        xStart: 320,
-        yStart: 342,
-        xEnd: 765,
-        yEnd: 163,
-    },
-    color: "white",
-    width: 2,
-    zoomCoords: {
-        xStart: 320,
-        yStart: 342,
-        xEnd: 765,
-        yEnd: 163,
-    },
-})
+createAxes(data)
+createCursor(data)

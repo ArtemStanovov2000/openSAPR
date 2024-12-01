@@ -20,7 +20,7 @@ const clickSlice = createSlice({
       for (let i = state.click.length; i > 0; i--) {
         state.click.pop()
       }
-    }
+    },
   }
 })
 

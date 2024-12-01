@@ -8,9 +8,20 @@ export type Line = {
     color: string,
     width: number
     zoomCoords: {
-        xStart: number | null,
-        yStart: number | null,
-        xEnd: number | null,
-        yEnd: number | null,
+        xStart: number,
+        yStart: number,
+        xEnd: number,
+        yEnd: number,
+    },
+}
+
+export type AuxiliaryLine = {
+    color: string,
+    width: number
+    coords: {
+        xStart: number,
+        yStart: number,
+        xEnd: number,
+        yEnd: number,
     },
 }

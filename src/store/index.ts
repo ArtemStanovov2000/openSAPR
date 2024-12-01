@@ -4,6 +4,8 @@ import clickSlice from "./clickSlice";
 import coordsSlice from "./coordsSlice";
 import zoomSlice from "./zoomSlice";
 import keyCodeSlice from "./keyCodeSlice";
+import zoomCoordsSlice from "./zoomCoordsSlice";
+import zoomClickSlice from "./zoomClickSlice";
 
 export default configureStore({
     reducer: {
@@ -11,6 +13,8 @@ export default configureStore({
         click: clickSlice,
         coords: coordsSlice,
         zoom: zoomSlice,
-        keyCode: keyCodeSlice
+        keyCode: keyCodeSlice,
+        zoomCoords: zoomCoordsSlice,
+        zoomClick: zoomClickSlice,
     }
 })

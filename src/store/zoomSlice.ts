@@ -13,10 +13,7 @@ const zoom: Zoom = {
 const zoomSlice = createSlice({
   name: "zoom",
   initialState: {
-    zoom: {
-      current: 1,
-      prev: 1
-    }
+    zoom: zoom
   },
   reducers: {
     setZoom(state, action) {
