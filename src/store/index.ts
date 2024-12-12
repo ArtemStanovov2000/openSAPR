@@ -6,6 +6,7 @@ import zoomSlice from "./zoomSlice";
 import keyCodeSlice from "./keyCodeSlice";
 import zoomCoordsSlice from "./zoomCoordsSlice";
 import zoomClickSlice from "./zoomClickSlice";
+import fullClickSlice from "./fullClickSlice";
 
 export default configureStore({
     reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
         keyCode: keyCodeSlice,
         zoomCoords: zoomCoordsSlice,
         zoomClick: zoomClickSlice,
+        fullClick: fullClickSlice
     }
 })

@@ -13,6 +13,7 @@ import { createStartWindow } from "../../../RenderEngine/createStartWindow"
 import { rerender } from "../../../RenderEngine"
 import { createUseStyles } from "react-jss"
 import { addZoomClickHistory, dropZoomClick } from "../../../store/zoomClickSlice"
+import { addFullClickHistory, dropFullClick } from "../../../store/fullClickSlice"
 
 type Props = {
     width: number,
@@ -36,6 +37,7 @@ const Canvas: FC<Props> = ({ width, height }) => {
     const storeDataKeyCode = useSelector((store: any) => store.keyCode.keyCode)
     const storeDataZoomCoords = useSelector((store: any) => store.zoomCoords.zoomCoords)
     const storeZoomDataClick = useSelector((store: any) => store.zoomClick.zoomClick)
+    const storeDataFullClick = useSelector((store: any) => store.fullClick.fullClick)
 
     const dispatch = useDispatch()
 
@@ -54,6 +56,10 @@ const Canvas: FC<Props> = ({ width, height }) => {
                 y: storeDataZoomCoords.y,
             }))
         }
+        dispatch(addFullClickHistory({
+            x: storeDataZoomCoords.x,
+            y: storeDataZoomCoords.y,
+        }))
     }
 
     const handleKeyDown = (e: any) => {
@@ -79,6 +85,7 @@ const Canvas: FC<Props> = ({ width, height }) => {
             keyCode: storeDataKeyCode,
             zoomCoords: storeDataZoomCoords,
             zoomClick: storeZoomDataClick,
+            fullClick: storeDataFullClick
         }
 
         const storeDispatch = {
@@ -103,7 +110,7 @@ const Canvas: FC<Props> = ({ width, height }) => {
         }
 
         rerender(context, data, windowParam, storeDispatch);
-    }, [storeDataCoords, storeDataTool, storeDataZoom, storeDataClick, storeDataKeyCode])
+    }, [storeDataCoords, storeDataTool, storeDataZoom, storeDataClick, storeDataKeyCode, storeDataFullClick])
 
     return (
         <div tabIndex={0} onKeyDown={handleKeyDown} onKeyUp={handleKeyDown1}>

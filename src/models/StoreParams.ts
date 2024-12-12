@@ -5,6 +5,7 @@ import { Zoom } from "../store/zoomSlice"
 import { KeyCode } from "../store/keyCodeSlice"
 import { ZoomCoords } from "../store/zoomCoordsSlice"
 import { ZoomClicks } from "../store/zoomClickSlice"
+import { FullClicks } from "../store/fullClickSlice"
 
 export type StoreParams = {
     coords: Coords,
@@ -14,4 +15,5 @@ export type StoreParams = {
     keyCode: KeyCode,
     zoomCoords: ZoomCoords,
     zoomClick: ZoomClicks[],
+    fullClick: FullClicks[]
 }

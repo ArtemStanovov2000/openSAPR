@@ -59,13 +59,12 @@ export const createCurvedDottedElement = (dottedSize: number, dottedGap: number,
     const anglesArray = createAnglesArray(dottedSize, dottedGap, endPointCoordinates, lengthLine, MAX_COUNT_DOTTED_ELEMENT)
     const elementCoordinates = []
     for (let i = 0; i < anglesArray.length; i++) {
-        console.log(anglesArray)
         elementCoordinates.push({
             xStart: Math.cos(anglesArray[i] / 57.33) * lengthLine + endPointCoordinates.xStart,
             yStart: Math.sin(anglesArray[i] / 57.33) * lengthLine + endPointCoordinates.yStart,
             xEnd: Math.cos(anglesArray[i] / 57.33) * lengthLine + endPointCoordinates.xStart + 1.5,
             yEnd: Math.sin(anglesArray[i] / 57.33) * lengthLine + endPointCoordinates.yStart + 1.5,
-            color: "red"
+            color: color
         })
     }
     return elementCoordinates

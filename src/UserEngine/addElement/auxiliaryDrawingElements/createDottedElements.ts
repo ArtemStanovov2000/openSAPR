@@ -11,7 +11,7 @@ export const createDottedElements = (distanceFromPoint: number, dottedSize: numb
     const secondOrtoLine = createOrtoLineCoordinates(endPointCoordinates, "end", distanceFromPoint)
     const parallelLine = createParallelLineCoordinates(endPointCoordinates, distanceFromPoint)
     const horizontalLine = createHorizontalLineCoordinates(endPointCoordinates)
-    const curvedLine = createCurvedDottedElement(dottedSize, dottedGap, endPointCoordinates, "#ff3232")
+    const curvedLine = createCurvedDottedElement(dottedSize, dottedGap, endPointCoordinates, "#d99c23")
 
     const firstOrtoLineDotted = createDottedLine(dottedSize, dottedGap, firstOrtoLine, "#ff3232")
     const secondOrtoLineDotted = createDottedLine(dottedSize, dottedGap, secondOrtoLine, "#ff3232")

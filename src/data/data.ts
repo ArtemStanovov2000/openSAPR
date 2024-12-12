@@ -1,4 +1,5 @@
 import { Line, AuxiliaryLine } from "../models/ElementsType/Line"
+import { Text } from "../models/ElementsType/Text"
 import { createAxes } from "./createAxes"
 import { createCursor } from "./createCursor"
 
@@ -7,7 +8,9 @@ export type Elements = {
 }
 
 export type AuxiliaryElements = {
-    Lines: AuxiliaryLine[]
+    Lines: AuxiliaryLine[],
+    Text: Text[]
+    Pole: AuxiliaryLine[]
 }
 
 export type Data = {
@@ -26,7 +29,9 @@ export const data: Data = {
         Lines: []
     },
     auxiliaryElements: {
-        Lines: []
+        Lines: [],
+        Text: [],
+        Pole: []
     },
     centerAxes: [],
     cursor: []

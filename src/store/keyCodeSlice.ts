@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export type KeyCode = {
-    keyCode: null | string
+export type KeyCode = null | string
+
+type State = {
+    keyCode: KeyCode
 }
 
-const initialState: KeyCode = {
+const initialState: State = {
     keyCode: null
 }
 
