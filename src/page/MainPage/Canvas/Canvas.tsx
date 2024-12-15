@@ -57,8 +57,8 @@ const Canvas: FC<Props> = ({ width, height }) => {
             }))
         }
         dispatch(addFullClickHistory({
-            x: storeDataZoomCoords.x,
-            y: storeDataZoomCoords.y,
+            x: e.clientX - e.target.offsetLeft,
+            y: e.clientY - e.target.offsetTop,
         }))
     }
 
