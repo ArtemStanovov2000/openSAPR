@@ -21,6 +21,7 @@ export type Data = {
     cursor: Line[]
 }
 
+//данные
 export const data: Data = {
     elements: {
         Lines: []
